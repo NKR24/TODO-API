@@ -24,5 +24,6 @@ func main() {
 
 	e := echo.New()
 	e.Use(middleware.CORS())
+	e.POST("/todos", createNewNote)
 	e.Start(":5000")
 }
