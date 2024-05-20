@@ -16,7 +16,7 @@ func main() {
 	ctx := context.Background()
 	rh := rejson.NewReJSONHandler()
 	rdb := redis.NewClient(&redis.Options{
-		Addr: "localhost:5000",
+		Addr: "localhost:6397",
 		DB:   0,
 	})
 
@@ -24,6 +24,8 @@ func main() {
 
 	e := echo.New()
 	e.Use(middleware.CORS())
-	e.POST("/todos", createNewNote)
+	e.POST("/todos", postNewNote)
+	e.GET("/todos/:id", getNoteById)
+	e.DELETE("/todos/:id", deleteNoteById)
 	e.Start(":5000")
 }
